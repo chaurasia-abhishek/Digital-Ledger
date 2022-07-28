@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#navbar a,form{
+  color: white;
+}
+#note-items{
+  height: 74vh;
+}
