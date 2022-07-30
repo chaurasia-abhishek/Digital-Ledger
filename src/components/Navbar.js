@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import NoteContext from '../context/notes/NoteContext'
 
 export default function Navbar() {
-  const { loginstatus, setloginstatus } = useContext(NoteContext)
+  const { loginstatus, setloginstatus, triggeralert } = useContext(NoteContext)
   const history = useHistory();
   return (
     <nav className="navbar navbar-dark navbar-expand-lg bg-dark p-1" id='navbar'>
@@ -23,13 +23,13 @@ export default function Navbar() {
           </ul>
           <div className="d-flex">
             <ul className="navbar-nav">
-              {loginstatus && <li className="btn btn-primary mx-1 px-1" onClick={() => { localStorage.removeItem('auth-token'); history.push("/login"); setloginstatus(false) }}>Logout</li>}
-              {!loginstatus && <Link className="btn btn-primary mx-1 px-1" to="/login">Login</Link>}
-              {!loginstatus && <Link className="btn btn-primary mx-1 px-1" to="/signup">Sign Up</Link>}
-            </ul>
-          </div>
+              {loginstatus && <li className="btn btn-primary mx-1 px-1" onClick={() => { localStorage.removeItem('auth-token'); history.push("/login"); setloginstatus(false) ;triggeralert({type:'success',msg: 'Logout successfully'})}}>Logout</li>}
+            {!loginstatus && <Link className="btn btn-primary mx-1 px-1" to="/login">Login</Link>}
+            {!loginstatus && <Link className="btn btn-primary mx-1 px-1" to="/signup">Sign Up</Link>}
+          </ul>
         </div>
       </div>
-    </nav>
+    </div>
+    </nav >
   )
 }

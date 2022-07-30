@@ -12,7 +12,7 @@ export default function Login() {
     const usercredentialslogin = async (event) => {
         event.preventDefault();
         const jsonusercredentialslogin = JSON.stringify(usercredentials)
-        const response = await fetch(`http://localhost:4000/api/auth/login`, {
+        const response = await fetch(`http://52.41.128.88:3000/api/auth/login`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: jsonusercredentialslogin

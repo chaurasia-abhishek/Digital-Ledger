@@ -13,7 +13,7 @@ export default function Signup() {
   const newusercredentialslogin = async (event) => {
     event.preventDefault();
     const jsonnewusercredentialslogin = JSON.stringify(newusercredentials)
-    const response = await fetch(`http://localhost:4000/api/auth/signup`, {
+    const response = await fetch(`http://52.41.128.88:3000/api/auth/signup`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: jsonnewusercredentialslogin

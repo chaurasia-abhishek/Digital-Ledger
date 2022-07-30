@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NoteContext from "./NoteContext";
 const NoteState = (props) => {
-    const url = 'http://localhost:4000';
+    const url = 'http://52.41.128.88:3000';
     // const url = '';
     let a = [];
     // a = [{ title: 'this is title', tag: 'this is tag', discription: 'this is discription', _id: '1' }, { title: '2this is title', tag: '3this is tag', discription: 'this is discription', _id: '2' }, { title: '3this is title', tag: 'this is tag', discription: 'this is discription', _id: '3' }, { title: '4this is title', tag: 'this is tag', discription: 'this is discription', _id: '4' }, { title: '5this is title', tag: 'this is tag', discription: 'this is discription', _id: '5' }, { title: '6this is title', tag: 'this is tag', discription: 'this is discription', _id: '6' }, { title: '7this is title', tag: 'this is tag', discription: 'this is discription', _id: '7' }]
