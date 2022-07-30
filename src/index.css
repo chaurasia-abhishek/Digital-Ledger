@@ -17,5 +17,11 @@ code {
   color: white;
 }
 #note-items{
-  height: 74vh;
+  height: 72vh;
+}
+h1,h2,h3,h4,h5,h6,p{
+  cursor: context-menu;
+}
+i{
+  cursor: pointer;
 }
