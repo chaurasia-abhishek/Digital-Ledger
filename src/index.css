@@ -13,11 +13,11 @@ code {
 }
 
 
-#navbar a,form{
-  color: white;
+a,form{
+  color: rgb(2, 1, 1);
 }
 #note-items{
-  height: 72vh;
+  height: 71vh;
 }
 h1,h2,h3,h4,h5,h6,p{
   cursor: context-menu;

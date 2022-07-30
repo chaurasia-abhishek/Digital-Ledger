@@ -11,10 +11,8 @@ export default function Createnote() {
         addnote(newNote)
         setNewNote({ title: '', tag: '', discription: '' })
     }
-
     return (
-
-        <div className='m-1 p-3 col-md-7 d-inline-block' >
+        <div className='m-1 p-1 col-md-7 d-inline-block' >
             <h2 className='container text-center'>Create Note</h2>
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Title*</label>

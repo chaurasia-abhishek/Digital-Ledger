@@ -15,9 +15,7 @@ export default function Editnote() {
         <div className="modal fade z-index-3" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content p-4">
-
                     <h3 className="modal-title container text-center" id="exampleModalLabel">EDIT NOTE</h3>
-
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Title*</label>
                         <input className={`form-control ${tempnote.title.length < 3 ? 'border-danger' : ''}`} id="title" value={tempnote.title} name="title" onChange={handleonchange} placeholder="Enter title here (minimum 3 characters)" />
@@ -34,7 +32,6 @@ export default function Editnote() {
                         <button type="button" className="btn btn-success mx-2" onClick={submitnote} disabled={tempnote.title.length < 3 || tempnote.discription.length < 5}>Submit</button>
                         <button type="button" className="btn btn-success mx-2" ref={ref} data-bs-dismiss="modal">Close</button>
                     </div>
-
                 </div>
             </div>
         </div>
