@@ -11,7 +11,7 @@ const fetchUserId = require('../middleware/login')
 //route:1 post /api/auth/signup
 //login not required
 //making the rules for new registration 
-
+const success=false;
 router.post('/signup', [
     body('name', 'enter a valid name').isLength({ min: 3 }),
     body('email', 'enter a valid email').isEmail(),
@@ -22,12 +22,12 @@ router.post('/signup', [
         const error = validationResult(req)
         //if validation not meet
         if (!error.isEmpty())
-            return res.status(400).json({ error: error.array() })
+            return res.status(400).json({ error: error.array(), success : success })
         //checking the email already registered if yes return founded object otherwise return NULL
         try {
             let newUser = await user.findOne({ email: req.body.email })
             if (newUser)
-                return res.status(400).json({ error: `${req.body.email} is already registered, please try with another email address to register` })
+                return res.status(400).json({ error: `${req.body.email} is already registered, please try with another email address to register`, success : success})
 
             //encrypting password
             const salt = await bcrypt.genSalt(10);
@@ -45,7 +45,7 @@ router.post('/signup', [
                 User: { id: newUser.id }
             }
             const authToken = jwt.sign(data, jwt_string)
-            res.json({ authToken });
+            res.json({ authToken, success : true });
 
         } catch (error) {
             console.error(error.message);
@@ -65,7 +65,7 @@ router.post('/login', [
     const error = validationResult(req);
     //is user entered valid input credentials
     if (!error.isEmpty())
-        return res.status(400).json({ error: error.array() })
+        return res.status(400).json({ error: error.array(), success : success })
 
     try {
         const { email, password } = req.body;
@@ -73,19 +73,19 @@ router.post('/login', [
         //is user email exists in our database
         const User = await user.findOne({ email });
         if (!User)
-            return res.status(400).json({ error: 'enter valid credential to login' })
+            return res.status(400).json({ error: 'enter valid credential to login', success : success })
 
         //is user password matches with our database
         const passwordCompare = await bcrypt.compare(password, User.password)
         if (!passwordCompare)
-            return res.status(400).json({ error: 'enter valid credential to login' })
+            return res.status(400).json({ error: 'enter valid credential to login', success : success })
 
         //for response creating a json web token with digital signature key
         const data = {
             User: { id: User.id }
         }
         const authToken = jwt.sign(data, jwt_string)
-        res.json({ authToken });
+        res.json({ authToken, success : true });
 
     } catch (error) {
         console.error(error.message);
@@ -103,7 +103,7 @@ router.post('/getuser', fetchUserId, async (req, res) => {
         //send resposnse to user with a valid auth-token
         const UserID = req.User.id
         const User = await user.findById(UserID).select('-password')
-        res.json(User)
+        res.json({User, success : true})
     } catch (error) {
         console.error(error.message);
         res.status(500).send('internal server error')

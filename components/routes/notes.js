@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const note = require('../models/note')
 const fetchUserId = require('../middleware/login')
-const { body, validationResult, header } = require('express-validator'); //to set rules for new user registration
+const checkId = require('../middleware/checkId')
+const { body, validationResult } = require('express-validator'); //to set rules for new user registration
+
 
 //route:1  get api/notes/read
 //login required
@@ -50,7 +52,11 @@ router.post('/create', [
 //note id required 
 //to update notes by user
 
-router.put('/update/:id', fetchUserId, async (req, res) => {
+router.put('/update/:id', checkId, [body('title', 'title contain atleast 3 character').isLength({ min: 3 }),
+body('discription', 'discription contain atleast 5 character').isLength({ min: 5 })], fetchUserId, async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty())
+        return res.status(400).json({ error: error.array() })
     let Note = await note.findById(req.params.id)
     if (!Note)
         return res.status(404).send('note not found')
@@ -79,7 +85,7 @@ router.put('/update/:id', fetchUserId, async (req, res) => {
 //note id required 
 //to delete note by user
 
-router.delete('/delete/:id', fetchUserId, async (req, res) => {
+router.delete('/delete/:id', checkId, fetchUserId, async (req, res) => {
     let Note = await note.findById(req.params.id);
     if (!Note)
         return res.status(404).send('note not found')
