@@ -6,7 +6,7 @@ export default function Note(props) {
     const { deletenote, settempnote } = useContext(NoteContext)
     return (
         <div className='m-1'>
-            <div className="card-body d-flex flex-column align-items-center px-2 py-1 form-control border-dark" >
+            <div className="card-body d-flex flex-column align-items-center py-2 py-1 form-control border-dark" >
                 <h5 className="card-title">{i}. {title}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{tag}</h6>
                 <p className="card-text m-0 text-center">{discription} </p>

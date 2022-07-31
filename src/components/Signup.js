@@ -29,8 +29,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="container">
-      <form onSubmit={newusercredentialslogin}>
+    <div className="container m-auto col-md-7">
+      <form className='m-1 p-1' onSubmit={newusercredentialslogin}>
         <h3 className='text-center'>Signup To Use Digital-ledger</h3>
         <div className="mb-3">
           <label htmlFor="exampleInputName1" className="form-label">Name</label>

@@ -27,9 +27,19 @@ export default function Login() {
             triggeralert({ type: 'success', msg: logintoken.error[0].msg ? logintoken.error[0].msg : logintoken.error })
     }
 
+    //js-for-toggle--media-query
+    const navitems1234 = document.querySelectorAll('#navbarSupportedContent>ul>li>a,#navbarSupportedContent>div>ul>a')
+    const navbartoggle1234 = document.getElementById('navbarSupportedContent')
+    if (window.matchMedia("(max-width: 991px)").matches) {
+        navitems1234.forEach((Element) => {
+            Element.addEventListener('click', () => {
+                navbartoggle1234.classList.remove('show')
+            })
+        })
+    }
     return (
-        <div className="container">
-            <form onSubmit={usercredentialslogin}>
+        <div className="container m-auto col-md-7">
+            <form className='m-1 p-1' onSubmit={usercredentialslogin}>
                 <h3 className='text-center'>Login To Use Digital-ledger</h3>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
